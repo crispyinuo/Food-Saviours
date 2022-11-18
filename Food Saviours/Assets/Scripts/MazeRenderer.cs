@@ -9,12 +9,14 @@ public class MazeRenderer : MonoBehaviour
 
     public float CellSize = 1f;
 
+    public int count = 10;
+
     private void Start(){
         MazeCell[,]maze = mazeGenerator.GetMaze();
 
         for(int x= 0; x<mazeGenerator.mazeWidth; x++){
             for(int y = 0; y<mazeGenerator.mazeHeight; y++){
-                GameObject newCell = Instantiate(MazeCellPrefab, new Vector3((float)x*CellSize, 0f, (float)y*CellSize), Quaternion.identity, transform);
+                GameObject newCell = Instantiate(MazeCellPrefab, new Vector3((float)x*CellSize, -0.5f, (float)y*CellSize), Quaternion.identity, transform);
                 MazeCellObject mazeCell = newCell.GetComponent<MazeCellObject>();
                 
                 // Determine walls active state
@@ -30,10 +32,12 @@ public class MazeRenderer : MonoBehaviour
                 if(y == 0){
                     bottom = true;
                 }
-
                 mazeCell.Init(top, bottom, right, left);
             }
         }
+
+        FoodSpawn foodspawner = GetComponent<FoodSpawn>();
+        foodspawner.InitFoods(count, mazeGenerator.mazeWidth, mazeGenerator.mazeHeight, CellSize);
     }
 
 }

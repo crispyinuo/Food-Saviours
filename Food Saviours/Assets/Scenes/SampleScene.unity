@@ -312,6 +312,7 @@ GameObject:
   - component: {fileID: 1710407394}
   - component: {fileID: 1710407395}
   - component: {fileID: 1710407396}
+  - component: {fileID: 1710407397}
   m_Layer: 0
   m_Name: Maze
   m_TagString: Untagged
@@ -365,3 +366,26 @@ MonoBehaviour:
   mazeGenerator: {fileID: 1710407395}
   MazeCellPrefab: {fileID: 6527695986998226072, guid: ca88ade2039a148179194a2bbbf56005, type: 3}
   CellSize: 1
+  count: 10
+--- !u!114 &1710407397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710407393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef3ec6355957444591ba65e15eff3c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab1: {fileID: 1000010759889362, guid: 3245fc5926a7535429f2989cab01a844, type: 3}
+  prefab2: {fileID: 1000013650473748, guid: 1ab6ed6db0b83984bb512a33711b213f, type: 3}
+  prefab3: {fileID: 1000011038145264, guid: 45c7dddf851acbb4e94a8fc0ead66eed, type: 3}
+  prefab4: {fileID: 1000012400448258, guid: 9b21be590f33e0d4ba19fec73ce555da, type: 3}
+  prefab5: {fileID: 1000013051596076, guid: b93286b7dfa93834caec88d1044606c2, type: 3}
+  prefab6: {fileID: 1000012087637210, guid: cc3c5a058e6bb634781860012b9aa683, type: 3}
+  prefab7: {fileID: 1000013397514734, guid: 50147d929fb926b4eb555a4d0b89ab60, type: 3}
+  prefab8: {fileID: 1000012244298164, guid: 3c2e7dbde68087547ae2eeca74dffec4, type: 3}
+  prefab9: {fileID: 1000010528404258, guid: b7d70d80ddd390f41a1bdde5957f74f0, type: 3}
+  prefab10: {fileID: 1000011546679732, guid: c50664c203e2d3d4bbe40a0ffea7d149, type: 3}
