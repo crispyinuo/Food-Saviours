@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class Player : MonoBehaviour {
 
@@ -10,6 +11,9 @@ public class Player : MonoBehaviour {
 		public float turnSpeed = 400.0f;
 		private Vector3 moveDirection = Vector3.zero;
 		public float gravity = 20.0f;
+		private int foodCount = 0;
+		public TextMeshProUGUI foodCounter;
+    	public Joystick joystick;
 
 
 		void Start () {
@@ -18,6 +22,10 @@ public class Player : MonoBehaviour {
 		}
 
 		void Update (){
+			foodCounter.text = foodCount.ToString();
+
+			float vert = joystick.Vertical;
+        	float horiz = joystick.Horizontal;
 			if (Input.GetKey ("w")||Input.GetKey ("s")) {
 				anim.SetInteger ("AnimationPar", 1);
 			}  else {
@@ -26,12 +34,13 @@ public class Player : MonoBehaviour {
 			if(Input.GetKey("space")){
 				GetFood();
 			}
-			if(controller.isGrounded){
-				moveDirection = transform.forward * Input.GetAxis("Vertical") * speed;
-			}
 
-			float turn = Input.GetAxis("Horizontal");
-			transform.Rotate(0, turn * turnSpeed * Time.deltaTime, 0);
+			vert+=Input.GetAxis("Vertical");
+			if(controller.isGrounded){
+				moveDirection = transform.forward * vert * speed;
+			}
+			horiz += Input.GetAxis("Horizontal");
+			transform.Rotate(0, horiz * turnSpeed * Time.deltaTime, 0);
 			controller.Move(moveDirection * Time.deltaTime);
 			moveDirection.y -= gravity * Time.deltaTime;
 		}
@@ -49,7 +58,7 @@ public class Player : MonoBehaviour {
 		// 	}
 		// }
 
-		private void GetFood(){
+		public void GetFood(){
 			Collider[] hitColliders = Physics.OverlapSphere(transform.position, m_foodRange);
             for (int i = 0; i < hitColliders.Length; i++){
                 GameObject hitCollider = hitColliders[i].gameObject;
@@ -57,6 +66,7 @@ public class Player : MonoBehaviour {
                 {
 					anim.SetTrigger("GetFood");
 					hitCollider.GetComponent<Food>().Collect();
+					foodCount ++;
 					Debug.Log("Collect the Food!");		
                 }
             }

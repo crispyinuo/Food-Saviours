@@ -18,8 +18,8 @@ public class FoodSpawn : MonoBehaviour
         this.CellSize = CellSize;
         for(int i = 0; i < foodCount; i++){
             // find a random value between 1 and 5 (6 exclusive)
-            int x = Random.Range(0,width);
-            int y = Random.Range(0,height);
+            int x = Random.Range(1,width);
+            int y = Random.Range(1,height);
             int whatToSpawn = Random.Range(1,6);
             spawn(whatToSpawn, x, y);  
         }
