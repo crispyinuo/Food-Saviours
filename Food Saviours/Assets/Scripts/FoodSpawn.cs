@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +9,7 @@ public class FoodSpawn : MonoBehaviour
     private int foodCount = 10;
 
     private float CellSize = 1f;
+    private HashSet<Tuple<int, int>> foodLocation = new HashSet<Tuple<int, int>>();
     // Start is called before the first frame update
     public void InitFoods(int count, int width, int height, float CellSize)
     {
@@ -18,10 +19,16 @@ public class FoodSpawn : MonoBehaviour
         this.CellSize = CellSize;
         for(int i = 0; i < foodCount; i++){
             // find a random value between 1 and 5 (6 exclusive)
-            int x = Random.Range(1,width);
-            int y = Random.Range(1,height);
-            int whatToSpawn = Random.Range(1,6);
-            spawn(whatToSpawn, x, y);  
+            int x = UnityEngine.Random.Range(1,width);
+            int y = UnityEngine.Random.Range(1,height);
+            Tuple<int,int> newLoc = new Tuple<int,int>(x,y);
+            if(foodLocation.Contains(newLoc)){
+                i--;
+            }else{
+                int whatToSpawn = UnityEngine.Random.Range(1,6);
+                spawn(whatToSpawn, x, y); 
+                foodLocation.Add(newLoc);
+            } 
         }
     }
 
