@@ -47,7 +47,6 @@ public class MazeRenderer : MonoBehaviour
 
         for (int i = 0; i < surfaces.Count; i++) 
         {
-            Debug.Log("cell added");
             surfaces[i].BuildNavMesh();    
         }    
     }

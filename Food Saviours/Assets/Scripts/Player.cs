@@ -68,7 +68,7 @@ public class Player : MonoBehaviour {
 					Vector3 dir = hitColliders[i].GetComponent<Food>().transform.position-transform.position;
 					Vector3 normal = dir.normalized;
 					float angle = Mathf.Acos(Vector3.Dot(normal,transform.forward));
-					Debug.Log("Angle" + angle);		
+				//	Debug.Log("Angle" + angle);		
 					if(angle<=angleRange){
 						hitCollider.GetComponent<Food>().Collect();
 						foodCount ++;
