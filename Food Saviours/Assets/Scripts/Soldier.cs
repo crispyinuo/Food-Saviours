@@ -11,7 +11,7 @@ public class Soldier : MonoBehaviour
     public float m_searchRange = 5f;
     // private int foodCount = 0;
 	public float m_speed = 3.0f;
-	public float turnSpeed = 150.0f;
+	public float m_turnSpeed = 150.0f;
 	private Vector3 moveDirection = Vector3.zero;
 	public float gravity = 20.0f;
     private State m_state = State.Idle;
@@ -55,7 +55,8 @@ public class Soldier : MonoBehaviour
              moveVector += Physics.gravity;
          }
 
-          switch (m_state) {
+        // Check State
+        switch (m_state) {
             case State.Idle:
                 this.attack=false;
                 if(attackTarget==null){
@@ -68,7 +69,8 @@ public class Soldier : MonoBehaviour
                 if(attackTarget!=null){
                     m_state = State.Walking;
                     anim.SetTrigger("Walk");
-                    agent.SetDestination(attackTarget.transform.position);
+                    MoveToLocation(attackTarget.transform.position);
+                    //agent.SetDestination(attackTarget.transform.position);
                 }
                 break;
             case State.Walking:
@@ -83,36 +85,29 @@ public class Soldier : MonoBehaviour
 
                 // set Direction of the Player
                 if(attackTarget!=null){
-                    agent.SetDestination(attackTarget.transform.position);
+                    MoveToLocation(attackTarget.transform.position);
+                  //  agent.SetDestination(attackTarget.transform.position);
                 }
-
-                Collider[] hitColliders = Physics.OverlapSphere(transform.position, m_attackRange);
-                for (int i = 0; i < hitColliders.Length; i++){
-                    GameObject hitCollider = hitColliders[i].gameObject;
-                    if (hitCollider.GetComponent<Player>()!=null)
-                    {
-                        attackTarget = hitCollider.GetComponent<Player>();
-                        Debug.Log("Found the Player!");
-                        m_state = State.Attacking;
-                        break;
-                    }
+                if(checkAttackTarget()){
+                    m_state = State.Attacking;
                 }
                 break;
             case State.Attacking:
-                if(attackTarget!=null){
+                GetTarget();
+                if(checkAttackTarget()){
                     attack = true;
                     anim.SetTrigger("Attack");
-                }
-                if(attackTarget==null){
+                }else{
                     attack = false;
                     m_state = State.Walking;
                     anim.SetTrigger("ReloadWalk");
                 }
                 break;  
         }
+        controller.SimpleMove(m_speed*moveVector*Time.deltaTime);
 
         //Apply our move Vector
-         controller.Move(moveVector * Time.deltaTime);
+      //  controller.Move(moveVector * Time.deltaTime);
  
     }
 
@@ -125,5 +120,23 @@ public class Soldier : MonoBehaviour
         if(dist<=m_searchRange){
             this.attackTarget = player;
         }
+    }
+
+    bool checkAttackTarget(){
+        bool targetInRange = false;
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, m_attackRange);
+            for (int i = 0; i < hitColliders.Length; i++){
+                GameObject hitCollider = hitColliders[i].gameObject;
+                if (hitCollider.GetComponent<Player>()!=null)
+                {
+                    attackTarget = hitCollider.GetComponent<Player>();
+                    Debug.Log("Found the Player!");
+                    targetInRange = true;
+                    Vector3 angle =  attackTarget.transform.position - transform.position;
+                    transform.forward = angle;
+                    break;
+                }
+            }
+        return targetInRange;
     }
 }
