@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7072444061591711186, guid: 910177ec26b76c14996c2d53627a6def, type: 3}
       propertyPath: m_Name
-      value: PolyartCharacter
+      value: PolyartCharacter Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 910177ec26b76c14996c2d53627a6def, type: 3}
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ba5d94dd8b24089a6e44b079c43794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_attackRange: 1
+  m_attackRange: 1.5
   m_searchRange: 5
   m_speed: 3
   m_turnSpeed: 150

@@ -7,7 +7,7 @@ public class Soldier : MonoBehaviour
 {
     private Animator anim;
 	private CharacterController controller;
-	public float m_attackRange = 1f;
+	public float m_attackRange = 1.5f;
     public float m_searchRange = 5f;
     // private int foodCount = 0;
 	public float m_speed = 3.0f;
