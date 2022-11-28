@@ -12,7 +12,8 @@ public class MazeRenderer : MonoBehaviour
 
     public float CellSize = 1f;
 
-    public int count = 10;
+    public int foodcount = 10;
+    public int soldiercount = 1;
 
     private void Start(){
         MazeCell[,]maze = mazeGenerator.GetMaze();
@@ -40,8 +41,9 @@ public class MazeRenderer : MonoBehaviour
         }
 
         FoodSpawn foodspawner = GetComponent<FoodSpawn>();
-        foodspawner.InitFoods(count, mazeGenerator.mazeWidth, mazeGenerator.mazeHeight, CellSize);
-
+        foodspawner.InitFoods(foodcount, mazeGenerator.mazeWidth, mazeGenerator.mazeHeight, CellSize);
+        SoldierSpawn soldierspawner = GetComponent<SoldierSpawn>();
+        soldierspawner.InitSoldiers(soldiercount, mazeGenerator.mazeWidth, mazeGenerator.mazeHeight, CellSize);
 
         for (int i = 0; i < surfaces.Count; i++) 
         {
