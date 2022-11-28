@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MazeRenderer : MonoBehaviour
 {
     [SerializeField] MazeGenerator mazeGenerator;
     [SerializeField] GameObject MazeCellPrefab;
+    private List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
+
 
     public float CellSize = 1f;
 
@@ -18,7 +21,7 @@ public class MazeRenderer : MonoBehaviour
             for(int y = 0; y<mazeGenerator.mazeHeight; y++){
                 GameObject newCell = Instantiate(MazeCellPrefab, new Vector3((float)x*CellSize, -0.5f, (float)y*CellSize), Quaternion.identity, transform);
                 MazeCellObject mazeCell = newCell.GetComponent<MazeCellObject>();
-                
+                surfaces.Add(newCell.transform.Find("Floor").GetComponent<NavMeshSurface>());
                 // Determine walls active state
                 bool top = maze[x,y].topWall;
                 bool left = maze[x,y].leftWall;
@@ -38,6 +41,13 @@ public class MazeRenderer : MonoBehaviour
 
         FoodSpawn foodspawner = GetComponent<FoodSpawn>();
         foodspawner.InitFoods(count, mazeGenerator.mazeWidth, mazeGenerator.mazeHeight, CellSize);
+
+
+        for (int i = 0; i < surfaces.Count; i++) 
+        {
+            Debug.Log("cell added");
+            surfaces[i].BuildNavMesh();    
+        }    
     }
 
 }
