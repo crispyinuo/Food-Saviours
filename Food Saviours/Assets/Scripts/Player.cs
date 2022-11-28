@@ -13,8 +13,10 @@ public class Player : MonoBehaviour {
 		public float gravity = 20.0f;
 		private int foodCount = 0;
 		public TextMeshProUGUI foodCounter;
+		public TextMeshProUGUI lifeCounter;
     	public Joystick joystick;
 		public float angleRange = 0.5f;
+		public int lives = 3;
 
 
 		void Start () {
@@ -23,7 +25,9 @@ public class Player : MonoBehaviour {
 		}
 
 		void Update (){
+
 			foodCounter.text = foodCount.ToString();
+			lifeCounter.text = lives.ToString();
 
 			float vert = joystick.Vertical;
         	float horiz = joystick.Horizontal;

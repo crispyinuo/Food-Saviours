@@ -150,8 +150,10 @@ MonoBehaviour:
   turnSpeed: 150
   gravity: 20
   foodCounter: {fileID: 729682514}
+  lifeCounter: {fileID: 1455405318}
   joystick: {fileID: 998721314}
   angleRange: 1
+  lives: 3
 --- !u!1 &347638374
 GameObject:
   m_ObjectHideFlags: 0

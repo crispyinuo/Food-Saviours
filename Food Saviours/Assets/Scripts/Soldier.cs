@@ -134,9 +134,18 @@ public class Soldier : MonoBehaviour
                     targetInRange = true;
                     Vector3 angle =  attackTarget.transform.position - transform.position;
                     transform.forward = angle;
+                  //  AttackThePlayer();
                     break;
                 }
             }
         return targetInRange;
+    }
+
+    void AttackThePlayer(){
+        if(attackTarget.lives <= 0){
+			Destroy(attackTarget);
+		}else{
+            attackTarget.lives --;
+        }
     }
 }
