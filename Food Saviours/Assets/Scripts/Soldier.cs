@@ -48,11 +48,11 @@ public class Soldier : MonoBehaviour
         switch (m_state) {
             case State.Idle:
                 this.attack=false;
-                if(GetTarget()){
+                if(!GetTarget()){
                     agent.isStopped = true;
                 }
                 // set Direction of the Player
-                if(attackTarget!=null){
+                if(GetTarget() && attackTarget!=null){
                     anim.SetTrigger("Walk");
                     m_state = State.Walking;
                     MoveToLocation(attackTarget.transform.position);
@@ -61,7 +61,7 @@ public class Soldier : MonoBehaviour
                 break;
             case State.Walking:
                 this.attack=false;
-                if(GetTarget()){
+                if(!GetTarget()){
                     agent.isStopped = true;
                     // if attackTarget disappear, backToIdle
                     Debug.Log("I am Idle now");
