@@ -14,10 +14,12 @@ public class Soldier : MonoBehaviour
 	public float m_turnSpeed = 150.0f;
 	private Vector3 moveDirection = Vector3.zero;
 	public float gravity = 20.0f;
+    public float m_attackDelay = 5.0f;
     private State m_state = State.Idle;
     private Player attackTarget = null;
     private NavMeshAgent agent;
     private bool attack = false;
+    private float timer = 0.0f;
 
     public enum State {
         Idle,
@@ -96,14 +98,23 @@ public class Soldier : MonoBehaviour
                 GetTarget();
                 if(checkAttackTarget()){
                     attack = true;
-                    anim.SetTrigger("Attack");
+                   // anim.SetTrigger("Attack");
                 }else{
                     attack = false;
                     m_state = State.Walking;
                     anim.SetTrigger("ReloadWalk");
                 }
-                break;  
-        }
+                break;   
+            } 
+            timer+=Time.deltaTime;
+
+            if(attack == true){
+                if(timer>=m_attackDelay){
+                    anim.SetTrigger("Attack");
+                    timer = 0.0f;
+                    attack = false;
+                }
+            }
         controller.SimpleMove(m_speed*moveVector*Time.deltaTime);
 
         //Apply our move Vector
