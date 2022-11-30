@@ -20,7 +20,7 @@ public class Soldier : MonoBehaviour
     private NavMeshAgent agent;
     private bool attack = false;
     private float timer = 0.0f;
-
+	public AudioSource FireSound;
     public enum State {
         Idle,
         Walking,
@@ -40,6 +40,7 @@ public class Soldier : MonoBehaviour
 		anim = gameObject.GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent> ();    
         agent.speed = m_speed;
+      //  FireSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -140,6 +141,7 @@ public class Soldier : MonoBehaviour
 			//Destroy(attackTarget);
 			SceneManager.LoadScene("End");
 		}else{
+            FireSound.Play(0);
             attackTarget.lives --;
         }
     }

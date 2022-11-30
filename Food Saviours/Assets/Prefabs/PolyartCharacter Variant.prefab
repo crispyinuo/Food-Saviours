@@ -136,3 +136,4 @@ MonoBehaviour:
   m_turnSpeed: 150
   gravity: 20
   m_attackDelay: 5
+  FireSound: {fileID: 1783213808837723873, guid: 826b9200ce13d4e01bf94b9038037a9b, type: 3}

@@ -29,7 +29,7 @@ public class Player : MonoBehaviour {
 
 		void Update (){
 
-			foodCounter.text = foodCount.ToString();
+			foodCounter.text = foodCount.ToString() + "/" + myMaze.getFoodCount().ToString();
 			lifeCounter.text = lives.ToString();
 
         	if(foodCount == myMaze.getFoodCount()){
