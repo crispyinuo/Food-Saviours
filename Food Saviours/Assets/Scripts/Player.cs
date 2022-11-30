@@ -35,6 +35,7 @@ public class Player : MonoBehaviour {
 
         	if(foodCount == myMaze.getFoodCount()){
 				//Destroy(attackTarget);
+				GameResult.didWin = true;
 				SceneManager.LoadScene("End");
 			}
 			float vert = joystick.Vertical;

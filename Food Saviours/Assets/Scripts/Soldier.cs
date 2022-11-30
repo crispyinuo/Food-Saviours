@@ -139,7 +139,7 @@ public class Soldier : MonoBehaviour
 
     void AttackThePlayer(){
         if(attackTarget.lives <= 0){
-			//Destroy(attackTarget);
+            GameResult.didWin = false;
 			SceneManager.LoadScene("End");
 		}else{
             FireSound.Play();
