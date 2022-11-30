@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
-{
-    //public GameObject m_restartMenu;
+{   
+    public static string Result = "You Win!";
     private int level = 1;
 
         public void QuitGame()
