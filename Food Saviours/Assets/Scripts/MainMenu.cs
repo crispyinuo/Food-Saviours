@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,7 @@ public class MainMenu : MonoBehaviour
     private int level = 1;
     public AudioSource levelSound;
     public AudioSource playSound;
+    public TextMeshProUGUI levelChoice;
 
         public void QuitGame()
     {
@@ -31,6 +33,7 @@ public class MainMenu : MonoBehaviour
     public void SetLevel(int level){
         if(level >= 1 && level <= 6){
             this.level = level;
+            levelChoice.text = level.ToString();
         }
         levelSound.Play();
         switch(level){
