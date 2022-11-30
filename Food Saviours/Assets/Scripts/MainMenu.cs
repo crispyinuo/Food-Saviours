@@ -7,6 +7,8 @@ public class MainMenu : MonoBehaviour
 {   
     public static string Result = "You Win!";
     private int level = 1;
+    public AudioSource levelSound;
+    public AudioSource playSound;
 
         public void QuitGame()
     {
@@ -21,6 +23,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        playSound.Play();
         SceneManager.LoadScene("Game");
        // Debug.Log("starting game");
     }
@@ -29,7 +32,7 @@ public class MainMenu : MonoBehaviour
         if(level >= 1 && level <= 6){
             this.level = level;
         }
-
+        levelSound.Play();
         switch(level){
             case 1:
                 MazeRenderer.foodcount = 5;
