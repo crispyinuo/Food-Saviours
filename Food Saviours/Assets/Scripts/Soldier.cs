@@ -30,7 +30,6 @@ public class Soldier : MonoBehaviour
 
     public void MoveToLocation(Vector3 targetPoint)
     {
-     //   agent.destination = targetPoint;
         agent.isStopped = false;
         agent.SetDestination(targetPoint);
     }
@@ -51,29 +50,25 @@ public class Soldier : MonoBehaviour
         switch (m_state) {
             case State.Idle:
                 this.attack=false;
-                if(!GetTarget()){
-                    agent.isStopped = true;
-                }
+                agent.isStopped = true;
                 // set Direction of the Player
                 if(GetTarget() && attackTarget!=null){
                     anim.SetTrigger("Walk");
                     m_state = State.Walking;
-                    MoveToLocation(attackTarget.transform.position);
+                //    MoveToLocation(attackTarget.transform.position);
                   //  agent.SetDestination(attackTarget.transform.position);
                 }
                 break;
             case State.Walking:
                 this.attack=false;
+                GetTarget();
                 if(!GetTarget()){
                     agent.isStopped = true;
                     // if attackTarget disappear, backToIdle
                     Debug.Log("I am Idle now");
                     anim.SetTrigger("Idle"); 
                     m_state = State.Idle;    
-                }
-
-                // set Direction of the Player
-                if(attackTarget!=null){
+                }else if(attackTarget!=null){
                     MoveToLocation(attackTarget.transform.position);
                   //  agent.SetDestination(attackTarget.transform.position);
                 }
@@ -138,7 +133,9 @@ public class Soldier : MonoBehaviour
     }
 
     void AttackThePlayer(){
+        agent.isStopped = true;
         if(attackTarget.lives <= 0){
+            FireSound.Play();
             GameResult.didWin = false;
 			SceneManager.LoadScene("End");
 		}else{
