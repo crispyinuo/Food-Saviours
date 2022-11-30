@@ -38,7 +38,7 @@ public class Player : MonoBehaviour {
 				GameResult.didWin = true;
 				SceneManager.LoadScene("End");
 			}
-			float vert = joystick.Vertical;
+			float vert = joystick.Vertical*1.5f;
         	float horiz = joystick.Horizontal;
 			// if (Input.GetKey ("w")||Input.GetKey ("s")) {
 			// 	anim.SetInteger ("AnimationPar", 1);
