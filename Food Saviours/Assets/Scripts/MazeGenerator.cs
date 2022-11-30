@@ -5,7 +5,8 @@ using UnityEngine;
 public class MazeGenerator : MonoBehaviour
 {
     [Range(5,200)]
-    public int mazeWidth = 5, mazeHeight = 5;
+    public int mazeWidth = 5;
+    public int mazeHeight = 5;
     public int startX, startY;
     MazeCell[,] maze;
 
@@ -142,7 +143,6 @@ public class MazeGenerator : MonoBehaviour
 
 
     }
-
 }
 
 public enum Direction{

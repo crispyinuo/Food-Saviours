@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
 		private Animator anim;
 		private CharacterController controller;
 		public float m_foodRange = 0f;
+		public GameObject maze;
 		public float speed = 3.0f;
 		public float turnSpeed = 150.0f;
 		private Vector3 moveDirection = Vector3.zero;
@@ -17,11 +19,12 @@ public class Player : MonoBehaviour {
     	public Joystick joystick;
 		public float angleRange = 0.5f;
 		public int lives = 3;
-
+		private MazeRenderer myMaze;
 
 		void Start () {
 			controller = GetComponent <CharacterController>();
 			anim = gameObject.GetComponentInChildren<Animator>();
+			myMaze = maze.GetComponent<MazeRenderer>();
 		}
 
 		void Update (){
@@ -29,6 +32,10 @@ public class Player : MonoBehaviour {
 			foodCounter.text = foodCount.ToString();
 			lifeCounter.text = lives.ToString();
 
+        	if(foodCount == myMaze.getFoodCount()){
+				//Destroy(attackTarget);
+				SceneManager.LoadScene("End");
+			}
 			float vert = joystick.Vertical;
         	float horiz = joystick.Horizontal;
 			// if (Input.GetKey ("w")||Input.GetKey ("s")) {

@@ -12,8 +12,8 @@ public class MazeRenderer : MonoBehaviour
 
     public float CellSize = 1f;
 
-    public int foodcount = 10;
-    public int soldiercount = 1;
+    static public int foodcount = 10;
+    static public int soldiercount = 1;
 
     private void Start(){
         MazeCell[,]maze = mazeGenerator.GetMaze();
@@ -49,6 +49,10 @@ public class MazeRenderer : MonoBehaviour
         {
             surfaces[i].BuildNavMesh();    
         }    
+    }
+
+    public int getFoodCount(){
+        return foodcount;
     }
 
 }

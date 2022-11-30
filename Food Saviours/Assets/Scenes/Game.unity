@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_foodRange: 1
+  maze: {fileID: 1710407393}
   speed: 3
   turnSpeed: 150
   gravity: 20
@@ -1436,7 +1437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a3ea592487941a1932eb20731b04db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstLevel: 
+  m_restartMenu: {fileID: 0}
 --- !u!1 &1455405316
 GameObject:
   m_ObjectHideFlags: 0
