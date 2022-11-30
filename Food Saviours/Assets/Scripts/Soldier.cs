@@ -21,6 +21,7 @@ public class Soldier : MonoBehaviour
     private bool attack = false;
     private float timer = 0.0f;
 	public AudioSource FireSound;
+    public AudioSource ReloadSound;
     public enum State {
         Idle,
         Walking,
@@ -141,7 +142,8 @@ public class Soldier : MonoBehaviour
 			//Destroy(attackTarget);
 			SceneManager.LoadScene("End");
 		}else{
-            FireSound.Play(0);
+            FireSound.Play();
+            ReloadSound.Play();
             attackTarget.lives --;
         }
     }

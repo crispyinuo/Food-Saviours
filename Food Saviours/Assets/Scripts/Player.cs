@@ -20,6 +20,7 @@ public class Player : MonoBehaviour {
 		public float angleRange = 0.5f;
 		public int lives = 3;
 		private MazeRenderer myMaze;
+		public AudioSource GetFoodSound;
 
 		void Start () {
 			controller = GetComponent <CharacterController>();
@@ -45,6 +46,7 @@ public class Player : MonoBehaviour {
 			// }
 			if(Input.GetKeyDown("space")){
 				anim.SetTrigger("GetFood");
+				GetFoodSound.Play();
 			}
 
 			vert+=Input.GetAxis("Vertical");
@@ -64,6 +66,7 @@ public class Player : MonoBehaviour {
 		
 		public void onClickButton(){
 			anim.SetTrigger("GetFood");
+			GetFoodSound.Play();
 		}
 		
 		public void GetFood(){
